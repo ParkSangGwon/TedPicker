@@ -42,29 +42,46 @@ public class MainActivity extends AppCompatActivity {
 
         mSelectedImagesContainer = (ViewGroup) findViewById(R.id.selected_photos_container);
         View getImages = findViewById(R.id.get_images);
-
-
         getImages.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View v) {
-                getImages();
+                getImages(null);
+            }
+        });
+
+
+        View getImages2 = findViewById(R.id.get_images2);
+        getImages2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Config config = new Config();
+                config.setCameraHeight(R.dimen.camera_height);
+                config.setToolbarTitleRes(R.string.custom_title);
+                config.setSelectionMin(2);
+                config.setSelectionLimit(4);
+                config.setSelectedBottomHeight(R.dimen.bottom_height);
+
+                getImages(config);
             }
         });
 
 
 
+
     }
 
-    private void getImages() {
+    private void getImages(Config config) {
 
 
-        Config config = new Config();
-        config.setCameraHeight(R.dimen.camera_height);
 
+        if(config!=null){
+            ImagePickerActivity.setConfig(config);
+        }
 
-        ImagePickerActivity.setConfig(config);
         Intent intent  = new Intent(this, ImagePickerActivity.class);
 
         if(image_uris!=null){
@@ -109,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             mSelectedImagesContainer.setVisibility(View.VISIBLE);
         }
 
-       int wdpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+       int wdpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
         int htpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
 
 
@@ -120,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
            Glide.with(this)
                     .load(uri.toString())
-                    //.override(wdpx,htpx)
                    .fitCenter()
                     .into(thumbnail);
 

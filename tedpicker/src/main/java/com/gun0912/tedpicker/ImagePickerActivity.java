@@ -16,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -46,6 +48,7 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
     View view_root;
     LinearLayout mSelectedImagesContainer;
     TextView mSelectedImageEmptyMessage;
+    View view_selected_photos_container;
     TextView tv_selected_title;
     ViewPager mViewPager;
     TabLayout tabLayout;
@@ -97,6 +100,26 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
 
         mSelectedImagesContainer = (LinearLayout) findViewById(R.id.selected_photos_container);
         mSelectedImageEmptyMessage = (TextView) findViewById(R.id.selected_photos_empty);
+
+        view_selected_photos_container = findViewById(R.id.view_selected_photos_container);
+        view_selected_photos_container.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                view_selected_photos_container.getViewTreeObserver().removeOnPreDrawListener(this);
+
+                int selected_bottom_size = (int) getResources().getDimension(mConfig.getSelectedBottomHeight());
+
+                ViewGroup.LayoutParams params=view_selected_photos_container.getLayoutParams();
+                params.height= selected_bottom_size;
+                view_selected_photos_container.setLayoutParams(params);
+
+
+                return true;
+            }
+        });
+
+
+
 
         if(mConfig.getSelectedBottomColor()>0){
             tv_selected_title.setBackgroundColor(mConfig.getSelectedBottomColor());
@@ -185,11 +208,11 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
             //  mImageFetcher.loadImage(image.mUri, thumbnail);
             mSelectedImagesContainer.addView(rootView, 0);
 
-            int px = (int) getResources().getDimension(mConfig.getSelectedBottomHeight());
+            int selected_bottom_size = (int) getResources().getDimension(mConfig.getSelectedBottomHeight());
 
             Glide.with(getApplicationContext())
                     .load(uri.toString())
-                    .override(px, px)
+                    .override(selected_bottom_size, selected_bottom_size)
                     .dontAnimate()
                     .centerCrop()
                     .error(R.drawable.no_image)

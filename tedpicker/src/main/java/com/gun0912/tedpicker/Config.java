@@ -43,7 +43,7 @@ public class Config {
         if (dimenRes <= 0)
             throw new IllegalArgumentException("Invalid value for cameraHeight");
 
-        this.cameraHeight = cameraHeight;
+        this.cameraHeight = dimenRes;
     }
 
     public int getSavedDirectoryName() {
