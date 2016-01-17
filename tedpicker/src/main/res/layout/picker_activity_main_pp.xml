@@ -70,7 +70,7 @@
                 android:gravity="center"
 
                 android:padding="5dp"
-                android:text="선택한 사진"
+                android:text="@string/selected_image"
                 android:textColor="#fff"
                 android:textSize="16sp"
                 android:textStyle="bold" />

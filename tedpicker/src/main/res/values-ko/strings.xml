@@ -16,6 +16,8 @@
     </string-array>
 
 
+    <string name="selected_image">선택한 사진</string>
+
     <string name="toolbar_title">사진 선택</string>
     <string name="no_image">이미지가 선택되지 않았습니다</string>
 

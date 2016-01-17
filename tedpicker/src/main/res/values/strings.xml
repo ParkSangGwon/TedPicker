@@ -19,6 +19,7 @@
     <string name="toolbar_title">Choice Image</string>
     <string name="no_image">No Image</string>
 
+    <string name="selected_image">Selected Image</string>
 
 
     <string name="max_count_msg">%1$d images selected already</string>
