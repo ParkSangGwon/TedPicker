@@ -23,6 +23,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -107,7 +108,9 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
 
         ViewGroup.LayoutParams params=cameraView.getLayoutParams();
-        params.height= (int) getResources().getDimension(mConfig.getCameraHeight());
+         params.height= (int) getResources().getDimension(mConfig.getCameraHeight());
+
+        Log.d("ted","params.height: "+params.height);
         cameraView.setLayoutParams(params);
 
 

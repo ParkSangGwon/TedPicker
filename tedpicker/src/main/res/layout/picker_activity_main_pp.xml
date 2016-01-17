@@ -79,7 +79,7 @@
             <FrameLayout
                 android:id="@+id/view_selected_photos_container"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/photo_picker_selected_image_height"
+                android:layout_height="@dimen/ted_picker_selected_image_height"
                 android:layout_alignParentBottom="true"
 
                 >

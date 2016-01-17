@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                getImages(null);
+                getImages(new Config());
             }
         });
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Config config = new Config();
-                config.setCameraHeight(R.dimen.camera_height);
+                config.setCameraHeight(R.dimen.app_camera_height);
                 config.setToolbarTitleRes(R.string.custom_title);
                 config.setSelectionMin(2);
                 config.setSelectionLimit(4);
@@ -76,11 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getImages(Config config) {
 
-
-
-        if(config!=null){
-            ImagePickerActivity.setConfig(config);
-        }
+        ImagePickerActivity.setConfig(config);
 
         Intent intent  = new Intent(this, ImagePickerActivity.class);
 

@@ -24,13 +24,13 @@ public class Config {
     private int selectionLimit = Integer.MAX_VALUE;
     private int selectionMin = 0;
 
-    private int cameraHeight = R.dimen.camera_height;
+    private int cameraHeight = R.dimen.ted_picker_camera_height;
 
     private int cameraBtnImage = R.drawable.ic_camera;
     private int cameraBtnBackground = R.drawable.btn_bg;
 
     private int selectedCloseImage = R.drawable.abc_ic_clear_mtrl_alpha;
-    private int selectedBottomHeight = R.dimen.photo_picker_selected_image_height;
+    private int selectedBottomHeight = R.dimen.ted_picker_selected_image_height;
 
     private int savedDirectoryName = R.string.app_name;
 
