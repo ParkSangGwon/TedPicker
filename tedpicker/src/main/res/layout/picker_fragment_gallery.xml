@@ -1,0 +1,22 @@
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <GridView
+        android:id="@+id/gallery_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:drawSelectorOnTop="true"
+        android:horizontalSpacing="0.5dp"
+        android:listSelector="?android:attr/selectableItemBackground"
+        android:numColumns="3"
+        android:verticalSpacing="0.5dp" />
+
+</FrameLayout>

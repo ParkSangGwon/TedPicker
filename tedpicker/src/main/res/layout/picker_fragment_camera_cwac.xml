@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+
+    >
+
+
+    <!--android:layout_height="@dimen/post_detail_picture_viewpager"-->
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/camera_height"
+        android:layout_centerInParent="true">
+
+        <com.commonsware.cwac.camera.CameraView
+            android:id="@+id/cameraView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+
+        <com.gun0912.tedpicker.view.DrawingView
+            android:id="@+id/drawingView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+
+    </RelativeLayout>
+
+
+    <!--android:layout_centerInParent="true"-->
+
+    <!--android:layout_height="@dimen/post_detail_picture_viewpager"-->
+
+    <View
+        android:id="@+id/vShutter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/btn_take_picture"
+        android:layout_width="@dimen/photo_picker_fab_size"
+        android:layout_height="@dimen/photo_picker_fab_size"
+        android:layout_alignParentBottom="true"
+
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_bg"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_camera" />
+
+
+</RelativeLayout>

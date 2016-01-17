@@ -1,0 +1,29 @@
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<resources>
+    <string name="app_name">Pictures</string>
+
+    <string name="progress_title">Processing..</string>
+
+    <string name="done">Done</string>
+
+
+    <string-array name="tab_titles">
+        <item>Camera</item>
+        <item>Gallery</item>
+    </string-array>
+
+
+    <string name="toolbar_title">Choice Image</string>
+    <string name="no_image">No Image</string>
+
+
+
+    <string name="max_count_msg">%1$d images selected already</string>
+    <string name="min_count_msg">you have to choice %1$d images</string>
+
+    <string name="focusing">focusing...wait a minute</string>
+
+</resources>

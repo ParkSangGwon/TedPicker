@@ -1,0 +1,17 @@
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <item
+        android:id="@+id/action_done"
+        android:icon="@drawable/ic_action_done"
+        android:title="@string/done"
+        app:showAsAction="always"/>
+
+
+</menu>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<resources>
+
+    <color name="custom_bg_grey">#F0F0F0</color>
+
+    <color name="custom_txt_whitegray">#D5D5D5</color>
+    <color name="custom_txt_midiumgray">#909090</color>
+    <color name="custom_txt_darkgray">#606060</color>
+
+    <color name="black_87">#de000000</color>
+    <color name="black_54">#8a000000</color>
+    <color name="black_20">#14000000</color>
+    <color name="black_30">#1d000000</color>
+
+
+</resources>

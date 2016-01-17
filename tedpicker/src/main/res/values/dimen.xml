@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<resources>
+
+
+    <dimen name="photo_picker_selected_image_height">90dp</dimen>
+    <dimen name="photo_picker_fab_elevation">8dp</dimen>
+    <dimen name="photo_picker_fab_size">60dp</dimen>
+    <dimen name="photo_picker_fab_press_translation_z">9dp</dimen>
+
+
+    <dimen name="camera_height">250dp</dimen>
+
+
+
+</resources>

@@ -1,0 +1,29 @@
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<resources>
+
+
+    <string name="progress_title">사진 변환중이에요..</string>
+
+
+    <string name="done">완료</string>
+
+    <string-array name="tab_titles">
+        <item>카메라</item>
+        <item>갤러리</item>
+    </string-array>
+
+
+    <string name="toolbar_title">사진 선택</string>
+    <string name="no_image">이미지가 선택되지 않았습니다</string>
+
+    <string name="max_count_msg">%1$d개까지 선택 가능합니다</string>
+    <string name="min_count_msg">%1$d개이상 선택하셔야 합니다</string>
+
+
+    <string name="focusing">초점을 잡는중이에요 잠시만 기다려주세요</string>
+
+
+</resources>

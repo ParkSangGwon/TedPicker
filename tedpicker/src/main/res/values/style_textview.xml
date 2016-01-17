@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="CustomText" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black_87</item>
+    </style>
+
+    <style name="CustomText_Display" parent="@style/CustomText">
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">@color/black_54</item>
+    </style>
+    
+     <style name="CustomText_Headline" parent="@style/CustomText">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black_87</item>
+    </style>
+    
+
+    <style name="CustomText_Title" parent="@style/CustomText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black_87</item>
+    </style>
+    
+    <style name="CustomText_Subhead" parent="@style/CustomText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black_87</item>
+    </style>
+    
+       <style name="CustomText_Body" parent="@style/CustomText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_87</item>
+    </style>
+    
+       <style name="CustomText_Caption" parent="@style/CustomText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black_54</item>
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

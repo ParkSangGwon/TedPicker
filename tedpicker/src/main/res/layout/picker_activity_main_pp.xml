@@ -1,0 +1,121 @@
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    >
+
+    <RelativeLayout
+        android:id="@+id/view_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:background="#fff">
+
+
+        <!--android:layout_height="@dimen/tab_height"-->
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#fff"
+
+            android:minHeight="?attr/actionBarSize"
+
+
+            app:tabGravity="fill"
+            app:tabIndicatorColor="?attr/colorPrimary"
+            app:tabIndicatorHeight="5dp"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="?attr/colorPrimary"
+            app:tabTextAppearance="@style/CustomText_Body"
+            app:tabTextColor="@color/custom_txt_whitegray"
+
+
+            />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/action_btn_contianer"
+            android:layout_below="@+id/tab_layout" />
+
+        <LinearLayout
+            android:id="@+id/action_btn_contianer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+
+            android:divider="?android:dividerHorizontal"
+
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <TextView
+
+                android:id="@+id/tv_selected_title"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:background="?attr/colorAccent"
+                android:gravity="center"
+
+                android:padding="5dp"
+                android:text="선택한 사진"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <FrameLayout
+                android:id="@+id/view_selected_photos_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/photo_picker_selected_image_height"
+                android:layout_alignParentBottom="true"
+
+                >
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:fillViewport="false"
+
+                    android:foregroundGravity="left">
+
+                    <LinearLayout
+                        android:id="@+id/selected_photos_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:animateLayoutChanges="true"
+                        android:gravity="left"
+                        android:orientation="horizontal"
+                        android:visibility="gone" />
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/selected_photos_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/no_image"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="?attr/colorAccent" />
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

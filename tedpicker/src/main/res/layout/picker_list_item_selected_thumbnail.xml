@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/photo_picker_selected_image_height"
+    android:layout_height="@dimen/photo_picker_selected_image_height"
+    android:paddingLeft="0.5dp"
+    android:paddingRight="0.5dp">
+
+    <ImageView
+        android:id="@+id/selected_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:scaleType="centerCrop"
+
+
+        />
+
+    <!--
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_close_background_white"
+            android:layout_gravity="right"
+            />
+    -->
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="2dp"
+        android:layout_gravity="right"
+        android:adjustViewBounds="true"
+        android:src="@drawable/abc_ic_clear_mtrl_alpha"
+        android:background="@drawable/state_normal"
+        />
+
+
+</FrameLayout>

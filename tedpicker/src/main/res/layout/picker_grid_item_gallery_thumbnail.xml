@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<com.gun0912.tedpicker.view.CustomSquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                    android:id="@+id/root"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:animateLayoutChanges="true"
+                                                    android:background="#cccccc"
+
+
+
+    >
+
+    <com.gun0912.tedpicker.view.CustomSquareImageView
+        android:id="@+id/thumbnail_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+
+        />
+
+
+</com.gun0912.tedpicker.view.CustomSquareFrameLayout>
