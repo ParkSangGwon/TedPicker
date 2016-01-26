@@ -3,7 +3,7 @@
   -->
 
 <resources>
-    <string name="app_name">test_picker</string>
+    <string name="app_name">TedPickerDemo</string>
 
     <string name="custom_title">Custom Title</string>
 </resources>
