@@ -11,7 +11,7 @@ Also you can customize color, drawable, select count, etc for your application.
 [Watch video at youtube](https://youtu.be/fGnJ03h1cK0)
 
 <br />
-![Screenshot](https://github.com/ParkSangGwon/TedPicker/blob/master/Screenshot1.png?raw=true)    
+![Screenshot](https://github.com/ParkSangGwon/TedPicker/blob/master/Screenshot.png?raw=true)    
            
 
 ##Setup
