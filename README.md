@@ -11,7 +11,8 @@ Also you can customize color, drawable, select count, etc for your application.
 [Watch video at youtube](https://youtu.be/fGnJ03h1cK0)
 
 <br />
-<img src="https://github.com/ParkSangGwon/TedPicker/blob/master/Screenshot1.png" width="30%" height="30%">                           <img src="https://github.com/ParkSangGwon/TedPicker/blob/master/Screenshot2.png" width="30%" height="30%">                            
+![Screenshot](https://github.com/ParkSangGwon/TedPicker/blob/master/Screenshot.png?raw=true)    
+           
 
 ##Setup
 
@@ -168,7 +169,7 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 
 ##License 
  ```code
-Copyright 2015 Ted Park
+Copyright 2010 Jason Johnston
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
