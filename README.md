@@ -22,12 +22,8 @@ We will use cwac-camera for take a picture. And get library from  [jitpack.io](h
 
 
 repositories {
-    maven { 
-url "https://repo.commonsware.com.s3.amazonaws.com" }
-
-    maven {
-        url "https://jitpack.io"
-    }
+    maven { url "https://repo.commonsware.com.s3.amazonaws.com" }
+    maven { url "https://jitpack.io" }
 
 }
 
@@ -55,7 +51,7 @@ Declare Activity in your  `AndroidManifest.xml`
 
 
 ```javascript
-        <activity android:name="com.gun0912.tedpicker.ImagePickerActivity"        />
+<activity android:name="com.gun0912.tedpicker.ImagePickerActivity" />
 ```
 
 
@@ -169,7 +165,7 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 
 ##License 
  ```code
-Copyright 2010 Jason Johnston
+Copyright 2015 Ted Park
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
