@@ -20,7 +20,6 @@ Also you can customize color, drawable, select count, etc for your application.
 We will use cwac-camera for take a picture. And get library from  [jitpack.io](https://jitpack.io/)
 ```javascript
 
-
 repositories {
     maven { url "https://repo.commonsware.com.s3.amazonaws.com" }
     maven { url "https://jitpack.io" }
@@ -31,19 +30,19 @@ dependencies {
      compile 'com.github.ParkSangGwon:tedpicker:v1.0.2'
 }
 
-
-
 ```
 
 #####Permission
 Add permission for Camera, External Storage.
 
 ```javascript
+
 <uses-feature android:name="android.hardware.camera" />
 <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
 
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 ```
 
 #####Activity
@@ -51,7 +50,9 @@ Declare Activity in your  `AndroidManifest.xml`
 
 
 ```javascript
+
 <activity android:name="com.gun0912.tedpicker.ImagePickerActivity" />
+
 ```
 
 
@@ -82,8 +83,6 @@ Add your request code for `startActivityForResult()` and start `ImagePickerActiv
 If you finish image select, you will recieve image path array (Uri type)
 ```javascript
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resuleCode, Intent intent) {
         super.onActivityResult(requestCode, resuleCode, intent);
@@ -95,7 +94,6 @@ If you finish image select, you will recieve image path array (Uri type)
                 //do something
             }
     }
-
 
 ```
 
@@ -110,7 +108,6 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 #####Example
 ```javascript
 
-
         Config config = new Config();
         config.setCameraHeight(R.dimen.app_camera_height);
         config.setToolbarTitleRes(R.string.custom_title);
@@ -122,9 +119,6 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 
         Intent intent = new Intent(this, ImagePickerActivity.class);
         startActivityForResult(intent, INTENT_REQUEST_GET_IMAGES);
-
-   
-
 
 ```
 
