@@ -1,3 +1,6 @@
+
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-TedPicker-green.svg?style=true)](https://android-arsenal.com/details/1/3092)
+
 #What is TedPicker?
 
 TedPicker is image selector library for android.<br />
