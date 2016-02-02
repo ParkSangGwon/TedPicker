@@ -162,7 +162,7 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 
 ##License 
  ```code
-Copyright 2015 Ted Park
+Copyright 2016 Ted Park
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
