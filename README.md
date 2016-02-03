@@ -1,7 +1,10 @@
+
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-TedPicker-green.svg?style=true)](https://android-arsenal.com/details/1/3092)
+
 #What is TedPicker?
 
 TedPicker is image selector library for android.<br />
-Do not waste your time for image select function. You can take a picture or select image from gallary.<br />
+Do not waste your time for write image select function code. You can take a picture or select image from gallery.<br />
 
 Also you can customize color, drawable, select count, etc for your application.
 
@@ -20,14 +23,9 @@ Also you can customize color, drawable, select count, etc for your application.
 We will use cwac-camera for take a picture. And get library from  [jitpack.io](https://jitpack.io/)
 ```javascript
 
-
 repositories {
-    maven { 
-url "https://repo.commonsware.com.s3.amazonaws.com" }
-
-    maven {
-        url "https://jitpack.io"
-    }
+    maven { url "https://repo.commonsware.com.s3.amazonaws.com" }
+    maven { url "https://jitpack.io" }
 
 }
 
@@ -35,19 +33,19 @@ dependencies {
      compile 'com.github.ParkSangGwon:tedpicker:v1.0.2'
 }
 
-
-
 ```
 
 #####Permission
 Add permission for Camera, External Storage.
 
 ```javascript
+
 <uses-feature android:name="android.hardware.camera" />
 <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
 
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 ```
 
 #####Activity
@@ -55,7 +53,9 @@ Declare Activity in your  `AndroidManifest.xml`
 
 
 ```javascript
-        <activity android:name="com.gun0912.tedpicker.ImagePickerActivity"        />
+
+<activity android:name="com.gun0912.tedpicker.ImagePickerActivity" />
+
 ```
 
 
@@ -86,8 +86,6 @@ Add your request code for `startActivityForResult()` and start `ImagePickerActiv
 If you finish image select, you will recieve image path array (Uri type)
 ```javascript
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resuleCode, Intent intent) {
         super.onActivityResult(requestCode, resuleCode, intent);
@@ -99,7 +97,6 @@ If you finish image select, you will recieve image path array (Uri type)
                 //do something
             }
     }
-
 
 ```
 
@@ -114,7 +111,6 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 #####Example
 ```javascript
 
-
         Config config = new Config();
         config.setCameraHeight(R.dimen.app_camera_height);
         config.setToolbarTitleRes(R.string.custom_title);
@@ -126,9 +122,6 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 
         Intent intent = new Intent(this, ImagePickerActivity.class);
         startActivityForResult(intent, INTENT_REQUEST_GET_IMAGES);
-
-   
-
 
 ```
 
@@ -169,7 +162,7 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 
 ##License 
  ```code
-Copyright 2010 Jason Johnston
+Copyright 2016 Ted Park
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
