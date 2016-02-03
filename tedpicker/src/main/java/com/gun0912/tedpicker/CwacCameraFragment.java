@@ -257,7 +257,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
     }
 
     private void takePicture() {
-
+        Log.d("gun0912","takePicture()");
 
         try {
             cameraView.takePicture(false, true);
@@ -274,7 +274,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
 
     public void onTakePicture(View view) {
-
+        Log.d("gun0912","onTakePicture()");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
                 && focusList == null
                 ) {
@@ -377,9 +377,13 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
         }
 
 
+
+
+
         // 미리보기 화면에서 사진 크기 해상도를 미리 가져온다
         @Override
         public Camera.Parameters adjustPreviewParameters(Camera.Parameters parameters) {
+        Log.d("gun0912","adjustPreviewParameters()");
 
             bestPictureSize = getBestPictureSize(parameters);
             return super.adjustPreviewParameters(parameters);
@@ -399,19 +403,27 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
         }
 
         private Camera.Size getBestPictureSize(Camera.Parameters parameters) {
-
+            Log.d("gun0912","getBestPictureSize()");
 
             Camera.Size result;
-
+            Log.d("gun0912","camera_width: "+camera_width);
 
             if (camera_width == 0) {
                 return CameraUtils.getLargestPictureSize(this, parameters, false);
             }
 
 
+            List<Camera.Size> sizes_preview= parameters.getSupportedPreviewSizes();
+            for (Camera.Size entry : sizes_preview) {
+                Log.d("gun0912","[Preview]"+entry.height+"x"+entry.width);
+            }
+
             List<Camera.Size> sizes = parameters.getSupportedPictureSizes();
 
 
+            for (Camera.Size entry : sizes) {
+                Log.d("gun0912","[Picture]"+entry.height+"x"+entry.width);
+            }
             Collections.sort(sizes,
                     Collections.reverseOrder(new SizeComparator()));
             result = sizes.get(sizes.size() - 1);
@@ -426,7 +438,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
 
             }
-
+            Log.i("gun0912","result: "+result.height+"x"+result.width);
 
             return result;
 
@@ -517,14 +529,20 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
         }
 
+
+
         @Override
         public void onAutoFocus(boolean success, Camera camera) {
+            Log.d("gun0912","onAutoFocus()");
+
+
+
 
             try {
 
                 // 터치해서 포커스 잡는 경우
                 if (focusList != null) {
-
+                    Log.d("gun0912","터치해서 포커스 잡는 경우");
                     Camera.Parameters param = camera.getParameters();
 
                     int maxNumFocusAreas = param.getMaxNumFocusAreas();
@@ -538,6 +556,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
                 }
                 // 아무터치하지않고 그냥 바로 촬영버튼 누른경우
                 else {
+                    Log.d("gun0912","아무터치하지않고 그냥 바로 촬영버튼 누른경우");
                     //  super.onAutoFocus(success, camera);
                     takePicture();
                 }
@@ -547,6 +566,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
                 e.printStackTrace();
 
             }
+
 
 
         }

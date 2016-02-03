@@ -5,6 +5,9 @@
 
 <resources>
 
+    <color name="custom_main">#44619c</color>
+    <color name="custom_main_dark">#304070</color>
+
     <color name="custom_bg_grey">#F0F0F0</color>
 
     <color name="custom_txt_whitegray">#D5D5D5</color>
