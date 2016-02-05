@@ -29,6 +29,7 @@
         </activity>
 
         <activity android:name="com.gun0912.tedpicker.ImagePickerActivity"
+                  android:screenOrientation="portrait"
             />
         
 

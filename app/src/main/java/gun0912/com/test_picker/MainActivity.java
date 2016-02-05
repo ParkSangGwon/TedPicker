@@ -27,17 +27,13 @@ public class MainActivity extends AppCompatActivity {
     private static final int INTENT_REQUEST_GET_IMAGES = 13;
 
     private static final String TAG = "TedPicker";
-
-
-
-    private ViewGroup mSelectedImagesContainer;
     ArrayList<Uri> image_uris = new ArrayList<Uri>();
+    private ViewGroup mSelectedImagesContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         mSelectedImagesContainer = (ViewGroup) findViewById(R.id.selected_photos_container);
@@ -65,32 +61,29 @@ public class MainActivity extends AppCompatActivity {
                 config.setSelectionLimit(4);
                 config.setSelectedBottomHeight(R.dimen.bottom_height);
 
+
                 getImages(config);
             }
         });
-
-
 
 
     }
 
     private void getImages(Config config) {
 
+
         ImagePickerActivity.setConfig(config);
 
-        Intent intent  = new Intent(this, ImagePickerActivity.class);
+        Intent intent = new Intent(this, ImagePickerActivity.class);
 
-        if(image_uris!=null){
-            intent.putParcelableArrayListExtra(ImagePickerActivity.EXTRA_IMAGE_URIS,image_uris);
+        if (image_uris != null) {
+            intent.putParcelableArrayListExtra(ImagePickerActivity.EXTRA_IMAGE_URIS, image_uris);
         }
 
 
-        startActivityForResult(intent,INTENT_REQUEST_GET_IMAGES);
+        startActivityForResult(intent, INTENT_REQUEST_GET_IMAGES);
 
     }
-
-
-
 
 
     @Override
@@ -99,11 +92,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (resuleCode == Activity.RESULT_OK) {
-            if (requestCode == INTENT_REQUEST_GET_IMAGES ) {
+            if (requestCode == INTENT_REQUEST_GET_IMAGES) {
 
                 image_uris = intent.getParcelableArrayListExtra(ImagePickerActivity.EXTRA_IMAGE_URIS);
 
-                if(image_uris!=null){
+                if (image_uris != null) {
                     showMedia();
                 }
 
@@ -111,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
 
     private void showMedia() {
@@ -122,18 +114,18 @@ public class MainActivity extends AppCompatActivity {
             mSelectedImagesContainer.setVisibility(View.VISIBLE);
         }
 
-       int wdpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
+        int wdpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
         int htpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
 
 
-        for(Uri uri:image_uris){
+        for (Uri uri : image_uris) {
 
             View imageHolder = LayoutInflater.from(this).inflate(R.layout.image_item, null);
             ImageView thumbnail = (ImageView) imageHolder.findViewById(R.id.media_image);
 
-           Glide.with(this)
+            Glide.with(this)
                     .load(uri.toString())
-                   .fitCenter()
+                    .fitCenter()
                     .into(thumbnail);
 
             mSelectedImagesContainer.addView(imageHolder);
