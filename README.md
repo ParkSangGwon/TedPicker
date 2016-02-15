@@ -54,7 +54,9 @@ Declare Activity in your  `AndroidManifest.xml`
 
 ```javascript
 
-<activity android:name="com.gun0912.tedpicker.ImagePickerActivity" />
+<activity android:name="com.gun0912.tedpicker.ImagePickerActivity" 
+                      android:screenOrientation="portrait"
+/>
 
 ```
 
