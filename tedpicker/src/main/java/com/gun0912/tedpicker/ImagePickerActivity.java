@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -55,6 +56,8 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
 
     PagerAdapter_Picker adapter;
 
+    protected Toolbar toolbar;
+
     public static Config getConfig() {
         return mConfig;
     }
@@ -90,6 +93,12 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
 
 
     private void initView() {
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
 
         view_root = findViewById(R.id.view_root);
         mViewPager = (ViewPager) findViewById(R.id.pager);

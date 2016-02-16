@@ -25,7 +25,7 @@
     <string name="min_count_msg">%1$d개이상 선택하셔야 합니다</string>
 
 
-    <string name="focusing">초점을 잡는중이에요 잠시만 기다려주세요</string>
+    <string name="focusing">초점/플래시를 잡는중이에요 잠시만 기다려주세요</string>
 
 
 </resources>

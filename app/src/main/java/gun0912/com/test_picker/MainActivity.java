@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 config.setSelectionMin(2);
                 config.setSelectionLimit(4);
                 config.setSelectedBottomHeight(R.dimen.bottom_height);
+                config.setFlashOn(true);
 
 
                 getImages(config);

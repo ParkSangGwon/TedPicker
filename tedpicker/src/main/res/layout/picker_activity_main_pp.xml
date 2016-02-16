@@ -3,12 +3,25 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
 
-    android:layout_height="match_parent"
+                android:layout_height="match_parent"
 
     >
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+
+
+        />
 
     <RelativeLayout
         android:id="@+id/view_root"
@@ -48,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/action_btn_contianer"
-            android:layout_below="@+id/tab_layout" />
+            android:layout_below="@+id/tab_layout"/>
 
         <LinearLayout
             android:id="@+id/action_btn_contianer"
@@ -73,7 +86,7 @@
                 android:text="@string/selected_image"
                 android:textColor="#fff"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
 
             <FrameLayout
@@ -100,7 +113,7 @@
                         android:animateLayoutChanges="true"
                         android:gravity="left"
                         android:orientation="horizontal"
-                        android:visibility="gone" />
+                        android:visibility="gone"/>
                 </HorizontalScrollView>
 
                 <TextView
@@ -110,7 +123,7 @@
                     android:layout_gravity="center"
                     android:text="@string/no_image"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?attr/colorAccent" />
+                    android:textColor="?attr/colorAccent"/>
             </FrameLayout>
 
 

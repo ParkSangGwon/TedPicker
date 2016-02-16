@@ -10,10 +10,15 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.hardware.Camera;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -80,6 +85,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
         super.onCreate(savedInstanceState);
         ImagePickerActivity.mMyCameraHost = new MyCameraHost(getActivity());
 
+
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setMessage(getString(R.string.progress_title));
         mProgressDialog.setIndeterminate(true);
@@ -145,7 +151,69 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
         });
 
 
+        addSensorListener();
+
+
         return view;
+    }
+
+    int device_orientation;
+
+    private void addSensorListener() {
+
+        SensorManager sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        sensorManager.registerListener(new SensorEventListener() {
+
+
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+
+
+/*
+
+                if (event.values[1]<6.5 && event.values[1]>-6.5) {
+                    if (device_orientation!=1) {
+                        Log.d("Sensor", "Landscape");
+                    }
+                    device_orientation=1;
+                } else {
+                    if (device_orientation!=0) {
+                        Log.d("Sensor", "Portrait");
+                    }
+                    device_orientation=0;
+                }
+
+
+*/
+
+                float x = event.values[0];
+                float y = event.values[1];
+
+
+
+
+                if (x<5 && x>-5 && y > 5)
+                    device_orientation = 0;
+                else if (x<-5 && y<5 && y>-5)
+                    device_orientation = 90;
+                else if (x<5 && x>-5 && y<-5)
+                    device_orientation = 180;
+                else if (x>5 && y<5 && y>-5)
+                    device_orientation = 270;
+
+
+
+
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+                // TODO Auto-generated method stub
+
+            }
+        }, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
+
+
     }
 
     private void initView() {
@@ -271,6 +339,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
 
     }
+
 
 
     public void onTakePicture(View view) {
@@ -413,17 +482,10 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
             }
 
 
-            List<Camera.Size> sizes_preview= parameters.getSupportedPreviewSizes();
-            for (Camera.Size entry : sizes_preview) {
-                Log.d("gun0912","[Preview]"+entry.height+"x"+entry.width);
-            }
 
             List<Camera.Size> sizes = parameters.getSupportedPictureSizes();
 
 
-            for (Camera.Size entry : sizes) {
-                Log.d("gun0912","[Picture]"+entry.height+"x"+entry.width);
-            }
             Collections.sort(sizes,
                     Collections.reverseOrder(new SizeComparator()));
             result = sizes.get(sizes.size() - 1);
@@ -444,18 +506,36 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
         }
 
+
+
+
+        private Bitmap getCorrectOrientImage(Bitmap bitmap) {
+
+
+
+                    bitmap = Util.rotate(bitmap, device_orientation);
+
+
+
+            return bitmap;
+
+
+        }
         private Bitmap getCorrectOrientImage(Bitmap bitmap, String path) {
 
 
             ExifInterface exif = null;
             try {
+
                 exif = new ExifInterface(path);
 
 
                 if (exif != null) {
                     int exifOrientation = exif.getAttributeInt(
                             ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+                    Log.d("gun0912","exifOrientation: "+exifOrientation);
                     int exifDegree = Util.exifOrientationToDegrees(exifOrientation);
+                    Log.d("gun0912","exifDegree: "+exifDegree);
                     bitmap = Util.rotate(bitmap, exifDegree);
 
                 }
@@ -468,6 +548,19 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
 
         }
+
+
+        @Override
+        public Camera.Parameters adjustPictureParameters(PictureTransaction xact, Camera.Parameters parameters) {
+
+            if(mConfig.isFlashOn()){
+                parameters.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+            }
+
+            return super.adjustPictureParameters(xact, parameters);
+        }
+
+
 
         @Override
         public void saveImage(PictureTransaction xact, byte[] image) {
@@ -485,7 +578,9 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
 
                 // 회전값을 보정한다
-                bitmap = getCorrectOrientImage(bitmap, photo.toString());
+                bitmap = Util.rotate(bitmap, device_orientation);
+                //bitmap = getCorrectOrientImage(bitmap, photo.toString());
+               // bitmap = getCorrectOrientImage(bitmap, photo.toString());
 
                 float ratio = camera_height / camera_width;
 
@@ -538,6 +633,7 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
 
 
+
             try {
 
                 // 터치해서 포커스 잡는 경우
@@ -586,9 +682,12 @@ public class CwacCameraFragment extends Fragment implements View.OnClickListener
 
                 return (0);
             }
+
+
         }
 
     }
+
 
 
 }

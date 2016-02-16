@@ -3,6 +3,9 @@
   -->
 
 <resources>
+
+
+
     <string name="app_name">Pictures</string>
 
     <string name="progress_title">Processing..</string>
@@ -25,6 +28,9 @@
     <string name="max_count_msg">%1$d images selected already</string>
     <string name="min_count_msg">you have to choice %1$d images</string>
 
-    <string name="focusing">focusing...wait a minute</string>
+    <string name="focusing">focusing/flash...wait a minute</string>
+
+
+    <string name="default_directory">Pictures</string>
 
 </resources>

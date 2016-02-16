@@ -32,8 +32,10 @@ public class Config {
     private int selectedCloseImage = R.drawable.abc_ic_clear_mtrl_alpha;
     private int selectedBottomHeight = R.dimen.ted_picker_selected_image_height;
 
-    private int savedDirectoryName = R.string.app_name;
+    private int savedDirectoryName = R.string.default_directory;
 
+
+    private boolean flashOn = false;
 
     public int getCameraHeight() {
         return cameraHeight;
@@ -172,5 +174,14 @@ public class Config {
         if (drawableRes <= 0) throw new IllegalArgumentException("Invalid value for selectedCloseImage");
 
         this.selectedCloseImage = drawableRes;
+    }
+
+
+    public boolean isFlashOn(){
+        return flashOn;
+    }
+
+    public void setFlashOn(boolean flashOn){
+        this.flashOn = flashOn;
     }
 }
