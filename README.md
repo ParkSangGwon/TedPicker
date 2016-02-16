@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-      compile 'com.github.ParkSangGwon:TedPicker:v1.0.3'
+      compile 'com.github.ParkSangGwon:TedPicker:v1.0.4'
 }
 
 ```
@@ -52,6 +52,7 @@ Add permission for Camera, External Storage.
 Declare Activity in your  `AndroidManifest.xml`
 
 
+
 ```javascript
 
 <activity android:name="com.gun0912.tedpicker.ImagePickerActivity" 
@@ -60,6 +61,22 @@ Declare Activity in your  `AndroidManifest.xml`
 
 ```
 
+
+you have to use `AppCompat` theme like this.
+ImagePickerActivity use toolbar without actionbar
+```javascript
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+```
 
 
 
