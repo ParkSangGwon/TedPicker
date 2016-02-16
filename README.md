@@ -170,7 +170,7 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 
 * `setSavedDirectoryName(R.string.xxx) (default: Pictures)`
 
-
+* `setFlashOn(boolean) (default: false)`
 
 ##Thanks 
 * This project is based on [Poly-Picker](https://github.com/jaydeepw/poly-picker) library project 
