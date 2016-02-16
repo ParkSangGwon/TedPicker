@@ -1,5 +1,5 @@
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-TedPicker-green.svg?style=true)](https://android-arsenal.com/details/1/3092)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-TedPicker-green.svg?style=true)](https://android-arsenal.com/details/1/3092) [![Release](https://jitpack.io/v/ParkSangGwon/TedPicker.svg)](https://jitpack.io/ParkSangGwon/TedPicker)
 
 #What is TedPicker?
 
