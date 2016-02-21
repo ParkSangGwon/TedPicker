@@ -11,22 +11,22 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.commonsware.cwac.camera.CameraHost;
 import com.commonsware.cwac.camera.CameraHostProvider;
+import com.gun0912.tedpicker.custom.adapter.SpacesItemDecoration;
+import com.gun0912.tedpicker.util.Util;
 
 import java.util.ArrayList;
 
@@ -38,25 +38,23 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
      */
     public static final String EXTRA_IMAGE_URIS = "image_uris";
     public static CwacCameraFragment.MyCameraHost mMyCameraHost;
+    // initialize with default config.
+    private static Config mConfig = new Config();
     /**
      * Key to persist the list when saving the state of the activity.
      */
 
-    public static ArrayList<Uri> mSelectedImages;
-    // initialize with default config.
-    private static Config mConfig = new Config();
-
+    public ArrayList<Uri> mSelectedImages;
+    protected Toolbar toolbar;
     View view_root;
-    LinearLayout mSelectedImagesContainer;
     TextView mSelectedImageEmptyMessage;
     View view_selected_photos_container;
+    RecyclerView rc_selected_photos;
     TextView tv_selected_title;
     ViewPager mViewPager;
     TabLayout tabLayout;
-
     PagerAdapter_Picker adapter;
-
-    protected Toolbar toolbar;
+    Adapter_SelectedPhoto adapter_selectedPhoto;
 
     public static Config getConfig() {
         return mConfig;
@@ -79,18 +77,17 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupFromSavedInstanceState(savedInstanceState);
         setContentView(R.layout.picker_activity_main_pp);
         initView();
 
         setTitle(mConfig.getToolbarTitleRes());
-        mSelectedImages = new ArrayList<Uri>();
-        setupFromSavedInstanceState(savedInstanceState);
+
 
         setupTabs();
-
+        setSelectedPhotoRecyclerView();
 
     }
-
 
     private void initView() {
 
@@ -107,7 +104,7 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
 
         tv_selected_title = (TextView) findViewById(R.id.tv_selected_title);
 
-        mSelectedImagesContainer = (LinearLayout) findViewById(R.id.selected_photos_container);
+        rc_selected_photos = (RecyclerView) findViewById(R.id.rc_selected_photos);
         mSelectedImageEmptyMessage = (TextView) findViewById(R.id.selected_photos_empty);
 
         view_selected_photos_container = findViewById(R.id.view_selected_photos_container);
@@ -118,8 +115,8 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
 
                 int selected_bottom_size = (int) getResources().getDimension(mConfig.getSelectedBottomHeight());
 
-                ViewGroup.LayoutParams params=view_selected_photos_container.getLayoutParams();
-                params.height= selected_bottom_size;
+                ViewGroup.LayoutParams params = view_selected_photos_container.getLayoutParams();
+                params.height = selected_bottom_size;
                 view_selected_photos_container.setLayoutParams(params);
 
 
@@ -128,36 +125,26 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
         });
 
 
-
-
-        if(mConfig.getSelectedBottomColor()>0){
+        if (mConfig.getSelectedBottomColor() > 0) {
             tv_selected_title.setBackgroundColor(mConfig.getSelectedBottomColor());
             mSelectedImageEmptyMessage.setTextColor(mConfig.getSelectedBottomColor());
         }
 
 
-
-
-
-
     }
-
 
     private void setupFromSavedInstanceState(Bundle savedInstanceState) {
 
-        ArrayList<Uri> list;
+
         if (savedInstanceState != null) {
-            list = savedInstanceState.getParcelableArrayList(EXTRA_IMAGE_URIS);
+            mSelectedImages = savedInstanceState.getParcelableArrayList(EXTRA_IMAGE_URIS);
         } else {
-            list = getIntent().getParcelableArrayListExtra(EXTRA_IMAGE_URIS);
+            mSelectedImages = getIntent().getParcelableArrayListExtra(EXTRA_IMAGE_URIS);
         }
 
-        if (list == null)
-            return;
 
-
-        for (Uri uri : list) {
-            addImage(uri);
+        if (mSelectedImages == null) {
+            mSelectedImages = new ArrayList<>();
         }
 
 
@@ -167,8 +154,10 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        if (mSelectedImages != null) {
+            outState.putParcelableArrayList(EXTRA_IMAGE_URIS, mSelectedImages);
+        }
 
-        outState.putParcelableArrayList(EXTRA_IMAGE_URIS, mSelectedImages);
     }
 
     private void setupTabs() {
@@ -177,13 +166,41 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
         tabLayout.setupWithViewPager(mViewPager);
 
 
-        if(mConfig.getTabBackgroundColor()>0)
-        tabLayout.setBackgroundColor(mConfig.getTabBackgroundColor());
+        if (mConfig.getTabBackgroundColor() > 0)
+            tabLayout.setBackgroundColor(mConfig.getTabBackgroundColor());
 
-        if(mConfig.getTabSelectionIndicatorColor()>0)
-        tabLayout.setSelectedTabIndicatorColor(mConfig.getTabSelectionIndicatorColor());
+        if (mConfig.getTabSelectionIndicatorColor() > 0)
+            tabLayout.setSelectedTabIndicatorColor(mConfig.getTabSelectionIndicatorColor());
 
     }
+
+    private void setSelectedPhotoRecyclerView() {
+
+
+        LinearLayoutManager mLayoutManager_Linear = new LinearLayoutManager(this);
+        mLayoutManager_Linear.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        rc_selected_photos.setLayoutManager(mLayoutManager_Linear);
+        rc_selected_photos.addItemDecoration(new SpacesItemDecoration(Util.dpToPx(this, 5), SpacesItemDecoration.TYPE_VERTICAL));
+        rc_selected_photos.setHasFixedSize(true);
+
+        int closeImageRes = mConfig.getSelectedCloseImage();
+
+        adapter_selectedPhoto = new Adapter_SelectedPhoto(this, closeImageRes);
+        adapter_selectedPhoto.updateItems(mSelectedImages);
+        rc_selected_photos.setAdapter(adapter_selectedPhoto);
+
+
+        if (mSelectedImages.size() >= 1) {
+            mSelectedImageEmptyMessage.setVisibility(View.GONE);
+        }
+
+
+
+
+
+    }
+
 
     public GalleryFragment getGalleryFragment() {
 
@@ -194,88 +211,46 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
 
     }
 
-    public boolean addImage(final Uri uri) {
+    public void addImage(final Uri uri) {
 
 
         if (mSelectedImages.size() == mConfig.getSelectionLimit()) {
-            String text = String.format(getResources().getString(R.string.max_count_msg),mConfig.getSelectionLimit());
+            String text = String.format(getResources().getString(R.string.max_count_msg), mConfig.getSelectionLimit());
             Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-            return false;
+            return;
         }
 
 
-        if (mSelectedImages.add(uri)) {
-            View rootView = LayoutInflater.from(this).inflate(R.layout.picker_list_item_selected_thumbnail, null);
-            ImageView thumbnail = (ImageView) rootView.findViewById(R.id.selected_photo);
-            ImageView iv_close = (ImageView) rootView.findViewById(R.id.iv_close);
-            iv_close.setImageResource(mConfig.getSelectedCloseImage());
+        mSelectedImages.add(uri);
+        adapter_selectedPhoto.updateItems(mSelectedImages);
 
 
-            rootView.setTag(uri);
-
-
-            //  mImageFetcher.loadImage(image.mUri, thumbnail);
-            mSelectedImagesContainer.addView(rootView, 0);
-
-            int selected_bottom_size = (int) getResources().getDimension(mConfig.getSelectedBottomHeight());
-
-            Glide.with(getApplicationContext())
-                    .load(uri.toString())
-                    .override(selected_bottom_size, selected_bottom_size)
-                    .dontAnimate()
-                    .centerCrop()
-                    .error(R.drawable.no_image)
-                    .into(thumbnail);
-
-            iv_close.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    removeImage(uri);
-
-                }
-            });
-
-
-
-            if (mSelectedImages.size() >= 1) {
-                mSelectedImagesContainer.setVisibility(View.VISIBLE);
-                mSelectedImageEmptyMessage.setVisibility(View.GONE);
-            }
-            return true;
+        if (mSelectedImages.size() >= 1) {
+            mSelectedImageEmptyMessage.setVisibility(View.GONE);
         }
 
 
-        return false;
+
+
+        rc_selected_photos.smoothScrollToPosition(adapter_selectedPhoto.getItemCount()-1);
+
+
     }
 
-    public boolean removeImage(Uri uri) {
+    public void removeImage(Uri uri) {
 
 
-        boolean result = mSelectedImages.remove(uri);
+        mSelectedImages.remove(uri);
 
+        adapter_selectedPhoto.updateItems(mSelectedImages);
 
-        if (result) {
-
-            if (GalleryFragment.mGalleryAdapter != null) {
-                GalleryFragment.mGalleryAdapter.notifyDataSetChanged();
-            }
-
-            for (int i = 0; i < mSelectedImagesContainer.getChildCount(); i++) {
-                View childView = mSelectedImagesContainer.getChildAt(i);
-                if (childView.getTag().equals(uri)) {
-                    mSelectedImagesContainer.removeViewAt(i);
-                    break;
-                }
-            }
-
-            if (mSelectedImages.size() == 0) {
-                mSelectedImagesContainer.setVisibility(View.GONE);
-                mSelectedImageEmptyMessage.setVisibility(View.VISIBLE);
-            }
-
-
+        if (mSelectedImages.size() == 0) {
+            mSelectedImageEmptyMessage.setVisibility(View.VISIBLE);
         }
-        return result;
+        GalleryFragment.mGalleryAdapter.notifyDataSetChanged();
+
+
+
     }
 
     public boolean containsImage(Uri uri) {
@@ -311,8 +286,8 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
     private void updatePicture() {
 
         if (mSelectedImages.size() < mConfig.getSelectionMin()) {
-            String text = String.format(getResources().getString(R.string.min_count_msg),mConfig.getSelectionMin());
-            Toast.makeText(this,text, Toast.LENGTH_SHORT).show();
+            String text = String.format(getResources().getString(R.string.min_count_msg), mConfig.getSelectionMin());
+            Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
             return;
         }
 

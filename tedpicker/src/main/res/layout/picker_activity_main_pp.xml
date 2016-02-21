@@ -89,6 +89,10 @@
                 android:textStyle="bold"/>
 
 
+
+
+
+
             <FrameLayout
                 android:id="@+id/view_selected_photos_container"
                 android:layout_width="match_parent"
@@ -97,24 +101,13 @@
 
                 >
 
-                <HorizontalScrollView
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rc_selected_photos"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
 
-                    android:fillViewport="false"
-
-                    android:foregroundGravity="left">
-
-                    <LinearLayout
-                        android:id="@+id/selected_photos_container"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="left"
-                        android:animateLayoutChanges="true"
-                        android:gravity="left"
-                        android:orientation="horizontal"
-                        android:visibility="gone"/>
-                </HorizontalScrollView>
+                    />
 
                 <TextView
                     android:id="@+id/selected_photos_empty"
