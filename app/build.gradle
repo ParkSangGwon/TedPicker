@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "gun0912.com.test_picker"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -40,7 +40,7 @@ dependencies {
     compile project(':tedpicker')
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.0'
 
 
 

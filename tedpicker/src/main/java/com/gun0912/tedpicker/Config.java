@@ -29,7 +29,7 @@ public class Config {
     private int cameraBtnImage = R.drawable.ic_camera;
     private int cameraBtnBackground = R.drawable.btn_bg;
 
-    private int selectedCloseImage = R.drawable.abc_ic_clear_mtrl_alpha;
+    private int selectedCloseImage = R.drawable.ic_clear;
     private int selectedBottomHeight = R.dimen.ted_picker_selected_image_height;
 
     private int savedDirectoryName = R.string.default_directory;
