@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-      compile 'com.github.ParkSangGwon:TedPicker:v1.0.7'
+      compile 'com.github.ParkSangGwon:TedPicker:v1.0.10'
 }
 
 ```
