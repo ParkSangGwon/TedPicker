@@ -3,8 +3,8 @@
 
 #What is TedPicker?
 
-TedPicker is image selector library for android.<br />
-Do not waste your time for write image select function code. You can take a picture or select image from gallery.<br />
+TedPicker is image selector library for android and allows you to easily take a picture from gallery or camera without using a lot of boilerplate code.<br />
+Do not waste your time for writing image select function code. You can take a picture or select image from gallery.<br />
 
 Also you can customize color, drawable, select count, etc for your application.
 
