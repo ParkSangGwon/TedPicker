@@ -12,6 +12,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -126,8 +127,8 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
 
 
         if (mConfig.getSelectedBottomColor() > 0) {
-            tv_selected_title.setBackgroundColor(mConfig.getSelectedBottomColor());
-            mSelectedImageEmptyMessage.setTextColor(mConfig.getSelectedBottomColor());
+            tv_selected_title.setBackgroundColor(ContextCompat.getColor(this, mConfig.getSelectedBottomColor()));
+            mSelectedImageEmptyMessage.setTextColor(ContextCompat.getColor(this, mConfig.getSelectedBottomColor()));
         }
 
 
@@ -167,10 +168,10 @@ public class ImagePickerActivity extends AppCompatActivity implements CameraHost
 
 
         if (mConfig.getTabBackgroundColor() > 0)
-            tabLayout.setBackgroundColor(mConfig.getTabBackgroundColor());
+            tabLayout.setBackgroundColor(ContextCompat.getColor(this, mConfig.getTabBackgroundColor()));
 
         if (mConfig.getTabSelectionIndicatorColor() > 0)
-            tabLayout.setSelectedTabIndicatorColor(mConfig.getTabSelectionIndicatorColor());
+            tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, mConfig.getTabSelectionIndicatorColor()));
 
     }
 
