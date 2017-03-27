@@ -1,7 +1,7 @@
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-TedPicker-green.svg?style=true)](https://android-arsenal.com/details/1/3092) [![Release](https://jitpack.io/v/ParkSangGwon/TedPicker.svg)](https://jitpack.io/ParkSangGwon/TedPicker)
 
-#What is TedPicker?
+# What is TedPicker?
 
 TedPicker is image selector library for android and allows you to easily take a picture from gallery or camera without using a lot of boilerplate code.<br />
 Do not waste your time for writing image select function code. You can take a picture or select image from gallery.<br />
@@ -9,7 +9,7 @@ Do not waste your time for writing image select function code. You can take a pi
 Also you can customize color, drawable, select count, etc for your application.
 
 
-##Demo
+## Demo
 
 [Watch video at youtube](https://youtu.be/fGnJ03h1cK0)
 
@@ -17,9 +17,9 @@ Also you can customize color, drawable, select count, etc for your application.
 ![Screenshot](https://github.com/ParkSangGwon/TedPicker/blob/master/Screenshot.png?raw=true)    
            
 
-##Setup
+## Setup
 
-#####Gradle
+##### Gradle
 We will use cwac-camera for take a picture. And get library from  [jitpack.io](https://jitpack.io/)
 ```javascript
 
@@ -35,7 +35,7 @@ dependencies {
 
 ```
 
-#####Permission
+##### Permission
 Add permission for Camera, External Storage.
 
 ```javascript
@@ -48,7 +48,7 @@ Add permission for Camera, External Storage.
 
 ```
 
-#####Activity
+##### Activity
 Declare Activity in your  `AndroidManifest.xml`
 
 
@@ -82,9 +82,9 @@ ImagePickerActivity use toolbar without actionbar
 
 
 
-##How to use
+## How to use
 
-#####1. Start Activity
+##### 1. Start Activity
 Add your request code for `startActivityForResult()` and start `ImagePickerActivity`
 
 ```javascript
@@ -101,7 +101,7 @@ Add your request code for `startActivityForResult()` and start `ImagePickerActiv
 ```
 
 
-#####2. Receive Activity
+##### 2. Receive Activity
 If you finish image select, you will recieve image path array (Uri type)
 ```javascript
 
@@ -123,11 +123,11 @@ If you finish image select, you will recieve image path array (Uri type)
 
 
 
-##Customize
+## Customize
 You can change color, drawable, height ...<br />
 Before call `startActivityForResult()`, set your  `Config` instance to `ImagePickerActivity`
 
-#####Example
+##### Example
 ```javascript
 
         Config config = new Config();
@@ -144,7 +144,7 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 
 ```
 
-#####Function
+##### Function
 
 * `setCameraHeight(R.dimen.xxx) (default: 250dp)`
 
@@ -172,14 +172,14 @@ Before call `startActivityForResult()`, set your  `Config` instance to `ImagePic
 
 * `setFlashOn(boolean) (default: false)`
 
-##Thanks 
+## Thanks 
 * This project is based on [Poly-Picker](https://github.com/jaydeepw/poly-picker) library project 
 * [Cwac-Camera](https://github.com/commonsguy/cwac-camera) - Taking Pictures. Made Sensible.
 * [Glide](https://github.com/bumptech/glide) - An image loading and caching library 
 * [Android Support Design](http://android-developers.blogspot.kr/2015/05/android-design-support-library.html) 
 
 
-##License 
+## License 
  ```code
 Copyright 2016 Ted Park
 
